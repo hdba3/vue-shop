@@ -9,15 +9,15 @@
         <el-container>
             <el-aside :width=menuwidth>
                 <div class="fold-buttun" @click="shrink">|||</div>
-                <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff"
-                    active-text-color="#ffd04b" :unique-opened="true" :collapse="iscollapse" :collapse-transition="false">
+                <el-menu :default-active="getpathname" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff"
+                    active-text-color="#ffd04b" :unique-opened="true" :collapse="iscollapse" :collapse-transition="false" :router="true">
                     <el-submenu :index="item.id + ''" v-for="item in menuitem" :key="item.id">
                         <template slot="title">
                             <i :class=iconlist[item.id]></i>
 
                             <span>{{ item.authName }}</span>
                         </template>
-                        <el-menu-item :index="childitem.id + ''" v-for="childitem in item.children" :key="childitem.id">
+                        <el-menu-item :index="'/'+childitem.path" v-for="childitem in item.children" :key="childitem.id" @click="getpath('/'+childitem.path)">
                             <template slot="title">
                                 <i class="el-icon-menu"></i>
                                 <span>{{ childitem.authName }}</span>
@@ -27,14 +27,17 @@
                 </el-menu>
             </el-aside>
             <!-- 主要页面 -->
-            <el-main>Main</el-main>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
         </el-container>
     </el-container>
 </template>
 <script>
 export default {
     created() {
-        this.getmenu()
+        this.getmenu(),
+        this.getpathname=window.sessionStorage.getItem('getpathname')
     },
     data() {
         return {
@@ -47,7 +50,8 @@ export default {
                 '145': 'el-icon-data-board',
             },
             iscollapse: false,
-            menuwidth: "200px"
+            menuwidth: "200px",
+            getpathname:''
         }
     },
     methods: {
@@ -71,6 +75,10 @@ export default {
         shrink(){
             this.iscollapse = !this.iscollapse
             this.menuwidth = this.iscollapse ? "60px":"200px"
+        },
+        getpath(getpath){
+            window.sessionStorage.setItem('getpathname',getpath)
+            this.getpathname = getpath
         }
     }
 }

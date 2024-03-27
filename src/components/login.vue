@@ -30,6 +30,7 @@ export default {
                 username: 'admin',
                 password: '123456'
             },
+            // 表单规则
             loginformrule: {
                 username: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
