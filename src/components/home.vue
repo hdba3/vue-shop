@@ -62,8 +62,8 @@ export default {
         },
         async getmenu() {
             const { data: res } = await this.$http.get('menus')
-            console.log(res)
-            console.log(res.data)
+            // console.log(res)
+            // console.log(res.data)
             if (res.meta.status !== 200) {
                 this.$alert('拉取菜单失败', '错误', {
                     confirmButtonText: '确定',
