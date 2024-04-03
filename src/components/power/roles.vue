@@ -49,7 +49,7 @@
                     <template slot-scope="scope">
                         <el-button type="primary" icon="el-icon-edit" size="mini"
                             @click="modify(scope.row)">编辑</el-button>
-                        <el-button type="primary" icon="el-icon-delete" size="mini"
+                        <el-button type="danger" icon="el-icon-delete" size="mini"
                             @click="deleteaoles(scope.row.id)">删除</el-button>
                         <el-button type="warning" icon="el-icon-s-tools" size="mini"
                             @click="allot(scope.row)">分配角色</el-button>
@@ -98,7 +98,6 @@
     </div>
 </template>
 <script>
-import { all } from 'axios';
 
 export default {
     data() {
@@ -119,7 +118,7 @@ export default {
             rolesfromrule: {    //添加角色规则
                 roleName: [
                     { required: true, message: '请输入角色名称', trigger: 'blur' },
-                    { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+                    { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
                 ],
                 roleDesc: [
                     { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }

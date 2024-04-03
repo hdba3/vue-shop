@@ -1,19 +1,19 @@
 import Vue from 'vue'
-import { 
-    Button, 
-    Form, 
-    FormItem, 
-    Input, 
-    Message, 
-    Container, 
-    Header, 
-    Main, 
-    Aside, 
-    Menu, 
-    MenuItem, 
+import {
+    Button,
+    Form,
+    FormItem,
+    Input,
+    Message,
+    Container,
+    Header,
+    Main,
+    Aside,
+    Menu,
+    MenuItem,
     Submenu,
     RadioGroup,
-    MenuItemGroup ,
+    MenuItemGroup,
     Alert,
     MessageBox,
     Breadcrumb,
@@ -32,8 +32,10 @@ import {
     Tree,
     Select,
     Option,
-    } from 'element-ui'
+    Cascader,
+} from 'element-ui'
 Vue.use(Button)
+Vue.use(Cascader)
 Vue.use(Option)
 Vue.use(Select)
 Vue.use(Tree)
