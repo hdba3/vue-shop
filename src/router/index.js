@@ -8,6 +8,9 @@ import Rights from '../components/power/rights.vue'
 import Roles from '../components/power/roles.vue'
 import Cate from '../components/goods/cate.vue'
 import Params from '../components/goods/params.vue'
+import Reports from '../components/reports/reports.vue'
+import dataV from '@jiaminghi/data-view'
+Vue.use(dataV)
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
@@ -22,6 +25,7 @@ const router = new VueRouter({
         { path: '/categories', component: Cate },
         { path: '/params', component: Params },
         { path: '/goods', component: Cate },
+        { path: '/reports', component: Reports },
       ]
     },
   ]
