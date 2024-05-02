@@ -10,6 +10,7 @@ import Cate from '../components/goods/cate.vue'
 import Params from '../components/goods/params.vue'
 import Reports from '../components/reports/reports.vue'
 import dataV from '@jiaminghi/data-view'
+import list from '../components/goods/List.vue'
 Vue.use(dataV)
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -24,7 +25,7 @@ const router = new VueRouter({
         { path: '/roles', component: Roles },
         { path: '/categories', component: Cate },
         { path: '/params', component: Params },
-        { path: '/goods', component: Cate },
+        { path: '/goods', component: list },
         { path: '/reports', component: Reports },
       ]
     },
