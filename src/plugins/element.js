@@ -35,7 +35,9 @@ import {
     Cascader,
     Tabs,
     TabPane,
+    Upload,
 } from 'element-ui'
+Vue.use(Upload)
 Vue.use(Button)
 Vue.use(Tabs)
 Vue.use(Cascader)

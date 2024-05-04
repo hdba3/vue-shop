@@ -12,6 +12,7 @@
     "@jiaminghi/data-view": "^2.10.0",
     "axios": "^1.6.8",
     "core-js": "^3.36.1",
+    "cors": "^2.8.5",
     "echarts": "^5.5.0",
     "element-ui": "^2.4.5",
     "vue": "^2.6.14",

@@ -17,6 +17,11 @@
                     <el-button type="primary" @click="login">登录</el-button>
                     <el-button type="info" @click="reset">重置</el-button>
                 </el-form-item>
+                <el-upload action="http://localhost:3000/upload" :before-upload="beforeAvatarUpload"
+                    :show-file-list="false">
+                    <el-button type="primary" class="avatar_button">上传头像</el-button>
+                    <div class="el-upload__tip">只能上传png/jpg文件，且不超过10MB</div>
+                </el-upload>
             </el-form>
         </div>
     </div>
@@ -43,27 +48,39 @@ export default {
             },
         }
     },
-    methods:{
-        reset(){
+    methods: {
+        reset() {
             // console.log(this)
             this.$refs.loginformref.resetFields();
         },
-        login(){
+        login() {
             this.$refs.loginformref.validate((async valid => {       //valid为true表示表单的所有规则验证通过
                 if (!valid) {
                     return;
                 } else {
-                    const {data:reslut}=await this.$http.post('login',this.loginform)
-                    if(reslut.meta.status!==200){
+                    const { data: reslut } = await this.$http.post('login', this.loginform)
+                    if (reslut.meta.status !== 200) {
                         this.$message.error('登录失败')
                     }
-                    else{
+                    else {
                         this.$message.success('登录成功')
-                        window.sessionStorage.setItem('token',reslut.data.token) //将token保存到sessionStorage中,来达成保存登录状态
+                        window.sessionStorage.setItem('token', reslut.data.token) //将token保存到sessionStorage中,来达成保存登录状态
                         this.$router.push('/home')
                     }
                 }
             }))
+        },
+        beforeAvatarUpload(file) {
+            const isPNG = file.type === 'image/png';
+            const isJPG = file.type === 'image/jpeg';
+            const isLt10M = file.size / 1024 / 1024 < 10;
+            if (!isPNG && !isJPG) {
+                this.$message.error('上传头像图片只能是 PNG/JPG 格式!');
+            }
+            if (!isLt10M) {
+                this.$message.error('上传头像图片大小不能超过 10MB!');
+            }
+            return isPNG && isLt10M;
         }
     }
 }
@@ -123,6 +140,12 @@ export default {
 .login_button {
     position: relative;
     left: 65%;
+    transform: translate(-50%, -50%);
+}
+
+.avatar_button {
+    position: relative;
+    left: 78%;
     transform: translate(-50%, -50%);
 }
 </style>
